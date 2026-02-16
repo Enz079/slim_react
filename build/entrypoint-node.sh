@@ -3,24 +3,24 @@ set -e
 
 cd /app
 
-needs_bootstrap=1
-if [ -f package.json ] && node -e 'const p=require("/app/package.json"); process.exit(p?.scripts?.start ? 0 : 1)' ; then
-  needs_bootstrap=0
-fi
+has_react_start() {
+  [ -f package.json ] && node -e 'const p=require("/app/package.json"); process.exit(p?.scripts?.start ? 0 : 1)'
+}
 
-if [ "$needs_bootstrap" -eq 1 ]; then
+bootstrap_react() {
   echo "Bootstrapping React app in /app..."
-  TMP_APP_DIR="$(mktemp -d)"
-  npx -y create-react-app "$TMP_APP_DIR" --use-npm --skip-git
+  tmp_app_dir="$(mktemp -d)"
+  npx -y create-react-app "$tmp_app_dir" --use-npm --skip-git
 
   # Keep .gitkeep (if present) but reset all other files to avoid stale/broken partial scaffolds.
   find /app -mindepth 1 -maxdepth 1 ! -name '.gitkeep' -exec rm -rf {} +
-  cp -r "$TMP_APP_DIR"/. /app/
-  rm -rf "$TMP_APP_DIR"
+  cp -a "$tmp_app_dir"/. /app/
+  rm -rf "$tmp_app_dir"
+}
 
-  npm install
-elif [ ! -d node_modules ]; then
-  npm install
+if ! has_react_start; then
+  bootstrap_react
 fi
 
-npm start
+[ -d node_modules ] || npm install
+exec npm start
