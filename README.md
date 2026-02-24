@@ -5,7 +5,7 @@
 `docker-compose up`
 
 ## Es
-'Implementare delle API REST sulla tabella alunni
+Implementare delle API REST sulla tabella alunni
 
 GET            /alunni           AlunniController:index
 GET            /alunni/{id}    AlunniController:show
@@ -19,4 +19,4 @@ curl http://localhost:8080/alunni
 curl http://localhost:8080/alunni/2
 curl -X POST http://localhost:8080/alunni -d '{"nome": "Claudio", "cognome": "Benve"}' -H "Content-Type: application/json"
 curl -X PUT http://localhost:8080/alunni/2 -d '{"nome": "Claudio", "cognome": "Benvenuti"}' -H "Content-Type: application/json"
-curl -X DELETE http://localhost:8080/alunni/2'
+curl -X DELETE http://localhost:8080/alunni/2
