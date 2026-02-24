@@ -1,6 +1,9 @@
 <?php
 use Slim\Factory\AppFactory;
 
+use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/controllers/AlunniController.php';
 
@@ -16,5 +19,12 @@ $app->get('/hello/{name}', function (Request $request, Response $response, array
 
 $app->get('/alunni', "AlunniController:index");
 
+$app->get('/alunni/{id}', "AlunniController:show");
+
+$app->post('/alunni', "AlunniController:create");
+
+$app->put('/alunni/{id}', "AlunniController:update");
+
+$app->delete('/alunni/{id}', "AlunniController:destroy");
 
 $app->run();
