@@ -30,11 +30,13 @@ class AlunniController
 
     $mysqli_connection = new MySQLi('my_mariadb', 'root', 'ciccio', 'scuola');
 
-    $data = $request->getParsedBody();
+    $data = json_decode($request->getBody(), true);
     $nome = $data['nome'];
     $cognome = $data['cognome'];
-
+    
     $sql = "INSERT INTO alunni (nome, cognome) VALUES ('$nome', '$cognome')";
+
+   
     $result = $mysqli_connection->query($sql);
 
     if ($result) {
@@ -61,7 +63,7 @@ class AlunniController
     $mysqli_connection = new MySQLi('my_mariadb', 'root', 'ciccio', 'scuola');
 
     $id = $args['id'];
-    $data = $request->getParsedBody();
+    $data = json_decode($request->getBody(), true);
     $nome = $data['nome'];
     $cognome = $data['cognome'];
     
@@ -79,7 +81,7 @@ class AlunniController
     
     $sql = "DELETE FROM alunni WHERE id = $id";
     $mysqli_connection->query($sql);
-    
+
     return $response->withStatus(204);
   }
 }
