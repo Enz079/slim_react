@@ -5,18 +5,18 @@
 `docker-compose up`
 
 ## Es
-Implementare delle API REST sulla tabella alunni
+Implementare delle API REST sulla tabella alunni <br>
 
-GET            /alunni           AlunniController:index
-GET            /alunni/{id}    AlunniController:show
-POST         /alunni           AlunniController:create
-PUT            /alunni/{id}    AlunniController:update
-DELETE     /alunni/{id}    AlunniController:destroy
+GET            /alunni           AlunniController:index <br>
+GET            /alunni/{id}    AlunniController:show <br>
+POST         /alunni           AlunniController:create <br>
+PUT            /alunni/{id}    AlunniController:update <br>
+DELETE     /alunni/{id}    AlunniController:destroy <br>
 
-Utilizzare curl per testare le rotte:
+Utilizzare curl per testare le rotte: <br>
 
-curl http://localhost:8080/alunni
-curl http://localhost:8080/alunni/2
-curl -X POST http://localhost:8080/alunni -d '{"nome": "Claudio", "cognome": "Benve"}' -H "Content-Type: application/json"
-curl -X PUT http://localhost:8080/alunni/2 -d '{"nome": "Claudio", "cognome": "Benvenuti"}' -H "Content-Type: application/json"
-curl -X DELETE http://localhost:8080/alunni/2
+curl http://localhost:8080/alunni <br>
+curl http://localhost:8080/alunni/2 <br>
+curl -X POST http://localhost:8080/alunni -d '{"nome": "Claudio", "cognome": "Benve"}' -H "Content-Type: application/json" <br>
+curl -X PUT http://localhost:8080/alunni/2 -d '{"nome": "Claudio", "cognome": "Benvenuti"}' -H "Content-Type: application/json" <br>
+curl -X DELETE http://localhost:8080/alunni/2 <br>
